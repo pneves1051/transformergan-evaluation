@@ -35,7 +35,7 @@ for (let i = 0; i < audios.length; i++) {
         root = root_list[2];
     }
     
-    new_src =  root + i.toString() + id + '.mp3' 
+    new_src =  root + (i%4).toString() + id + '.mp3' 
     console.log(new_src)
     audios[i].setAttribute('src', new_src)
 }
@@ -111,6 +111,8 @@ function changeStep(btn){
         array_index --;
     }
     steps[array[array_index]].classList.add('active');
+
+    window.scrollTo(0, 0)
 }
 
 function changeStartStep(){
