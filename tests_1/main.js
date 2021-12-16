@@ -1,5 +1,5 @@
 const steps = Array.from(document.querySelectorAll('form .step'));
-const nextBtn = document.querySelectorAll('form .botao-prox');
+var nextBtn = document.querySelectorAll('form .botao-prox');
 const prevBtn = document.querySelectorAll('form .botao-ant');
 
 const startStep = Array.from(document.querySelectorAll('form .start'));
@@ -35,6 +35,26 @@ for (let i = 0; i < audios.length; i++) {
 }
 
 
+var array = [...Array(steps.length).keys()]
+const shuffleArray = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+}
+shuffleArray(array);
+
+
+/* Turn last button into submit */
+lastBtn = nextBtn[array[nextBtn.length-1]];
+lastBtn.classList.remove('botao-prox');
+lastBtn.classList.add('botao-submit');
+lastBtn.setAttribute('type', 'submit');
+lastBtn.innerText = 'Concluído';
+nextBtn = document.querySelectorAll('form .botao-prox');
+
 nextBtn.forEach(button=>{
     button.addEventListener('click', (e) => {
         changeStep('next');
@@ -55,23 +75,7 @@ startBtn.forEach(button=>{
     })
 })
 
-let array = [...Array(steps.length).keys()]
-const shuffleArray = array => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-}
-shuffleArray(array);
 
-/* Turn last button into submit */
-lastBtn = nextBtn[array[nextBtn.length-1]];
-lastBtn.classList.remove('botao-prox');
-lastBtn.classList.add('botao-submit');
-lastBtn.setAttribute('type', 'submit');
-lastBtn.innerText = 'Concluído';
 
 
 /* Remove first button prox */
@@ -165,3 +169,26 @@ function changeStep(btn){
     steps[index].classList.add('active');
 }
 */
+
+
+var form2 = document.getElementById("form1");
+    
+async function handleSubmit(event) {
+  event.preventDefault();
+  var status = document.getElementById("status");
+  var data = new FormData(event.target);
+  fetch(event.target.action, {
+    method: form2.method,
+    body: data,
+    headers: {
+        'Accept': 'application/json'
+    }
+  }).then(response => {
+    status.innerHTML = "Obrigado pelo envio!";
+    form2.reset()
+    steps[array[array.length-1]].classList.remove('active');
+  }).catch(error => {
+    status.innerHTML = "Houve um problema com o envio de seu formulário."
+  });
+}
+form2.addEventListener("submit", handleSubmit)
