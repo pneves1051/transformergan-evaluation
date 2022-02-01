@@ -1,7 +1,10 @@
 var concBtn = document.querySelectorAll('form .botao-submit');
 
 var form2 = document.getElementById("form1");
-    
+
+var formFieldset = document.querySelectorAll("form .formulario");
+
+
 async function handleSubmit(event) {
   event.preventDefault();
   var status = document.getElementById("status");
@@ -14,6 +17,7 @@ async function handleSubmit(event) {
     }
   }).then(response => {
     status.innerHTML = "Obrigado pelo envio!";
+    formFieldset[0].remove('active');
     form2.reset()
   
   }).catch(error => {

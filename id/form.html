@@ -19,25 +19,31 @@
     </div>
 
     <form action='https://formspree.io/f/mdobegjj' method='post' id='form1'>
-        <fieldset classe="grupo">
-            <div class = "campo">
-                <label for="nome">Nome</label>
-                <input type="text" name = "nome" id = "nome" required>
+        
+        <fieldset class="formulario">
+        
+            <fieldset classe="grupo">
+                <div class = "campo">
+                    <label for="nome">Nome</label>
+                    <input type="text" name = "nome" id = "nome" required>
+                </div>
+
+                <div class = "campo">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" name = "sobrenome" id = "sobrenome" required>
+                </div>
+                
+            </fieldset>
+
+            <div class="campo">
+                <label for="email">Email</label>
+                <input type="email" name = "email" id = "email" required>
             </div>
 
-            <div class = "campo">
-                <label for="sobrenome">Sobrenome</label>
-                <input type="text" name = "sobrenome" id = "sobrenome" required>
-            </div>
-            
+            <button type="submit" class="botao-submit">Enviar</button>
+        
         </fieldset>
 
-        <div class="campo">
-            <label for="email">Email</label>
-            <input type="email" name = "email" id = "email" required>
-        </div>
-
-        <button type="submit" class="botao-submit">Enviar</button>
     </form>
     <div id='status'></div>
     <script src='./main.js'></script>
