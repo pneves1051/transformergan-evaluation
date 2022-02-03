@@ -5,6 +5,8 @@ var form2 = document.getElementById("form1");
 var formFieldset = document.querySelectorAll("form .formulario");
 
 
+
+
 async function handleSubmit(event) {
   event.preventDefault();
   var status = document.getElementById("status");
